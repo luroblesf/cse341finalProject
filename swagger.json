@@ -1,0 +1,381 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "REST API",
+    "description": ""
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/patients/": {
+      "get": {
+        "tags": [
+          "Patients"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Patients"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Patient Information",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "John"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Doe"
+                },
+                "birthDate": {
+                  "type": "string",
+                  "example": "1990-01-01"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "123-456-7890"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "john@example.com"
+                }
+              },
+              "required": [
+                "firstName",
+                "lastName",
+                "birthDate",
+                "phone",
+                "email"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/patients/{id}": {
+      "get": {
+        "tags": [
+          "Patients"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Patients"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Updated Patient Information",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "John"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Doe"
+                },
+                "birthDate": {
+                  "type": "string",
+                  "example": "1990-01-01"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "123-456-7890"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "john@example.com"
+                }
+              },
+              "required": [
+                "firstName",
+                "lastName",
+                "birthDate",
+                "phone",
+                "email"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Patients"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/doctors/": {
+      "get": {
+        "tags": [
+          "Doctors"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Doctors"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Doctor Information",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "Jane"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Smith"
+                },
+                "specialty": {
+                  "type": "string",
+                  "example": "Pediatrics"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "987-654-3210"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "jane.smith@clinic.com"
+                }
+              },
+              "required": [
+                "firstName",
+                "lastName",
+                "specialty",
+                "phone",
+                "email"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/doctors/{id}": {
+      "get": {
+        "tags": [
+          "Doctors"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Doctors"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Updated Doctor Information",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "example": "Jane"
+                },
+                "lastName": {
+                  "type": "string",
+                  "example": "Smith"
+                },
+                "specialty": {
+                  "type": "string",
+                  "example": "Pediatrics"
+                },
+                "phone": {
+                  "type": "string",
+                  "example": "987-654-3210"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "jane.smith@clinic.com"
+                }
+              },
+              "required": [
+                "firstName",
+                "lastName",
+                "specialty",
+                "phone",
+                "email"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Doctors"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
