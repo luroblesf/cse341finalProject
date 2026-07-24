@@ -1,9 +1,6 @@
 const swaggerAutogen = require("swagger-autogen")();
-const dotenv = require("dotenv");
-dotenv.config();
 
-const isProduction =
-  process.env.NODE_ENV === "production" || process.env.RENDER === "true";
+const isProduction = process.env.RENDER === "true";
 
 const doc = {
   info: {
@@ -12,7 +9,6 @@ const doc = {
       "API documentation for managing patients, doctors, and appointments.",
   },
   host: isProduction ? "://onrender.com" : "localhost:3000",
-
   schemes: isProduction ? ["https"] : ["http"],
 };
 
