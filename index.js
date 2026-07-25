@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const swaggerUi = require("swagger-ui-express");
@@ -8,6 +9,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cors());
 app.use(express.json());
 
 app.use(
@@ -26,7 +28,7 @@ app.use("/doctors", require("./routes/doctors"));
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
-    app.listen(PORT, () =>
+    app.listen(PORT, "0.0.0.0", () =>
       console.log(
         `Server running on port ${PORT}\nAPI Docs: http://localhost:${PORT}/api-docs`,
       ),
