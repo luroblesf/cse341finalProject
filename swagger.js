@@ -9,11 +9,13 @@ const doc = {
     description:
       "API documentation for managing patients, doctors, and appointments.",
   },
-  host: isProduction ? "://onrender.com" : "localhost:3000",
+  host: isProduction
+    ? "cse341finalproject-mn1w.onrender.com"
+    : "localhost:3000",
   schemes: isProduction ? ["https"] : ["http"],
 };
 
 const outputFile = "./swagger.json";
 const endpointsFiles = ["./index.js"];
 
-swaggerAutogen(outputFile, endpointsFiles);
+swaggerAutogen(outputFile, endpointsFiles, doc);
