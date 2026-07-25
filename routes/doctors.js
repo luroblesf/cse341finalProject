@@ -35,6 +35,11 @@ router.post("/", async (req, res) => {
     const savedDoctor = await newDoctor.save();
     res.status(201).json(savedDoctor);
   } catch (error) {
+    if (error.code === 11000) {
+      return res
+        .status(400)
+        .json({ message: "Email address is already in use." });
+    }
     res.status(400).json({ message: error.message });
   }
 });
@@ -50,12 +55,18 @@ router.put("/:id", async (req, res) => {
     const updatedDoctor = await Doctor.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true },
+      { new: true, runValidators: true },
     );
     if (!updatedDoctor)
       return res.status(404).json({ message: "Doctor not found" });
-    res.status(204).send();
+
+    res.status(200).json(updatedDoctor);
   } catch (error) {
+    if (error.code === 11000) {
+      return res
+        .status(400)
+        .json({ message: "Email address is already in use." });
+    }
     res.status(400).json({ message: error.message });
   }
 });
