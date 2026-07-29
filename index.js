@@ -1,16 +1,29 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const session = require("express-session");
+const passport = require("./config/passport");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 
-dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "temporary-local-secret-key",
+    resave: false,
+    saveUninitialized: true,
+  }),
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(
   "/api-docs",
@@ -24,6 +37,8 @@ app.use(
 
 app.use("/patients", require("./routes/patients"));
 app.use("/doctors", require("./routes/doctors"));
+app.use("/auth", require("./routes/auth"));
+app.use("/users", require("./routes/users"));
 
 mongoose
   .connect(process.env.MONGODB_URI)
